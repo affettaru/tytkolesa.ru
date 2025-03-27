@@ -1,0 +1,8 @@
+/home/bitrix/www/local/php_interface/include/function.php	[710] file from the Internet
+/home/bitrix/www/local/codenails/tools/Debug/Kint/Kint.class.php	[620] binary vars
+/home/bitrix/www/local/codenails/tools/Debug/Kint/inc/kintParser.class.php	[620] binary vars
+/home/bitrix/www/local/codenails/tools/Debug/Kint/parsers/custom/classstatics.php	[620] binary vars
+/home/bitrix/www/local/modules/kosmos.main/classes/general/ckosmos.php	[400] bitrix auth
+/home/bitrix/www/upload/tmp/BXTEMP-2020-07-02/23/bxu/main/.access.php	[110] php file in upload dir
+/home/bitrix/www/upload/tmp/BXTEMP-2020-07-03/05/bxu/main/.access.php	[110] php file in upload dir
+/home/bitrix/www/test/index.php	[710] file from the Internet

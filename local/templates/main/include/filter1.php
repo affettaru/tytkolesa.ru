@@ -1,0 +1,31 @@
+<?$APPLICATION->IncludeComponent(
+	"bitrix:catalog.smart.filter",
+	"shiny",
+	Array(
+		"CACHE_GROUPS" => "Y",
+		"CACHE_TIME" => "36000000",
+		"CACHE_TYPE" => "A",
+		"CONVERT_CURRENCY" => "N",
+		"DISPLAY_ELEMENT_COUNT" => "Y",
+		"FILTER_NAME" => "arrFilter",
+		"FILTER_VIEW_MODE" => "vertical",
+		"HIDE_NOT_AVAILABLE" => "N",
+		"IBLOCK_ID" => "10",
+		"IBLOCK_TYPE" => "catalog",
+		"PAGER_PARAMS_NAME" => "arrPager",
+		"POPUP_POSITION" => "left",
+		"PREFILTER_NAME" => "smartPreFilter",
+		"PRICE_CODE" => array("BASE"),
+		"SAVE_IN_SESSION" => "N",
+		"SECTION_CODE" => "shiny",
+		"SECTION_CODE_PATH" => "",
+		"SECTION_DESCRIPTION" => "-",
+		"SECTION_ID" => "",
+		"SECTION_TITLE" => "-",
+		"SEF_MODE" => "Y",
+		"SEF_RULE" => "/catalog/shiny/filter/#SMART_FILTER_PATH#/apply/",
+		"SMART_FILTER_PATH" => $_REQUEST["SMART_FILTER_PATH"],
+		"TEMPLATE_THEME" => "blue",
+		"XML_EXPORT" => "N"
+	)
+);?>

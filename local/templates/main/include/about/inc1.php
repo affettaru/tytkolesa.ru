@@ -1,0 +1,1 @@
+<img src="<?=SITE_TEMPLATE_PATH?>/img/welcome/bg-welcome-1.png" alt="" />

@@ -1,0 +1,11 @@
+#cv_settings_menu_icon {
+    background: url(icons/cv.settings/icon.svg) 10px no-repeat;
+    background-size: 16px;
+    border-radius: 20px;
+}
+
+.cv_settings_menu_icon {
+    background: url(icons/cv.settings/icon.svg) 10px no-repeat;
+    background-size: 16px;
+    border-radius: 20px;
+}

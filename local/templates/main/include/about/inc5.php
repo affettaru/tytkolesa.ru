@@ -1,0 +1,1 @@
+<div class="about__img"><img src="<?=SITE_TEMPLATE_PATH?>/img/about/img-about-0.png" alt="" /></div>
