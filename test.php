@@ -47,6 +47,7 @@ if(CModule::IncludeModule("catalog"))
     $client = new SoapClient("http://api-b2b.4tochki.ru/WCF/ClientService.svc?wsdl");
     $page=0;
     $pageSize=2000;
+    $ids=[];
     do{
         // break;
 
@@ -110,7 +111,8 @@ if(CModule::IncludeModule("catalog"))
             $res = CCatalogProduct::GetList(array(), array("IBLOCK_ID"=>$IBLOCK_ID,"ELEMENT_NAME"=>$name), false, false,array());
             // echo "<pre>Template arResult: "; print_r($res); echo "</pre>";
             while($ar_res = $res->Fetch())
-            {                 
+            {  
+                $ids=$ar_res["ID"];         
                 $t++;
                 $ID=$ar_res["ID"];
                 $arPrice = CPrice::GetByID($ID);
@@ -453,8 +455,8 @@ if(CModule::IncludeModule("catalog"))
 
         endforeach;
         $pageN=((array)((array) $answer)["GetFindTyreResult"])["totalPages"];
-        echo "<pre>Template arResult: "; print_r($pageN); echo "</pre>";
-        echo "<pre>Template arResult: "; print_r($page); echo "</pre>";
+        // echo "<pre>Template arResult: "; print_r($pageN); echo "</pre>";
+        // echo "<pre>Template arResult: "; print_r($page); echo "</pre>";
         }
     }while($page<$pageN);  
 
@@ -477,7 +479,7 @@ if(CModule::IncludeModule("catalog"))
         $page++;
 
         $answer = $client->GetFindDisk($params); 
-        echo "<pre>Template arResult: "; print_r("start"); echo "</pre>";
+        // echo "<pre>Template arResult: "; print_r("start"); echo "</pre>";
         $elements = ((array)((array)((array) $answer)["GetFindDiskResult"])["price_rest_list"])["DiskPriceRest"];
 
         $hlblock = HL\HighloadBlockTable::getList(array("filter" => array('TABLE_NAME' => 'b_hlbd_proizvoditelid')))->fetch();
@@ -512,7 +514,7 @@ if(CModule::IncludeModule("catalog"))
         $entity6 = HL\HighloadBlockTable::compileEntity($hlblock6);
         $entity_data_class6 = $entity6->getDataClass(); 
 
-        echo "<pre>Template arResult: "; print_r("-->"); echo "</pre>";
+        // echo "<pre>Template arResult: "; print_r("-->"); echo "</pre>";
         
         if(((array)((array)((array) $answer)["GetFindDiskResult"])["currencyRate"])["charCode"]=="RUB"){
         foreach ($elements as $element): 
@@ -525,8 +527,8 @@ if(CModule::IncludeModule("catalog"))
             $model=((array)$element)["model"];
             $marka=((array)$element)["marka"];
             $color=((array)$element)["color"];
-            echo "<pre>Template arResult: "; print_r($element); echo "</pre>";
-            echo "<pre>Template arResult: "; print_r($marka); echo "</pre>";
+            // echo "<pre>Template arResult: "; print_r($element); echo "</pre>";
+            // echo "<pre>Template arResult: "; print_r($marka); echo "</pre>";
           
             $t=0;
             $q=0;
@@ -536,6 +538,7 @@ if(CModule::IncludeModule("catalog"))
             // echo "<pre>Template arResult: "; print_r($res); echo "</pre>";
             while($ar_res = $res->Fetch())
             {
+                $ids=$ar_res["ID"]; 
                 $t++;
                 $ID=$ar_res["ID"];
                 $arPrice = CPrice::GetByID($ID);
@@ -883,14 +886,18 @@ if(CModule::IncludeModule("catalog"))
           
         endforeach;
         $pageN=((array)((array) $answer)["GetFindDiskResult"])["totalPages"];
-        echo "<pre>Template arResult: "; print_r($pageN); echo "</pre>";
-        echo "<pre>Template arResult: "; print_r($page); echo "</pre>";
+        // echo "<pre>Template arResult: "; print_r($pageN); echo "</pre>";
+        // echo "<pre>Template arResult: "; print_r($page); echo "</pre>";
         }
         
     }while($page<$pageN);  
 
-
-
+    echo "<pre>Template arResult: "; print_r($ids); echo "</pre>";
+    $els = \Bitrix\Iblock\ElementTable::getList(['filter' => ['IBLOCK_ID' => $IBLOCK_ID, '!ID' =>  $ids]])->fetchAll();
+    foreach ($els as $product) {
+        // echo "<pre>Template arResult: "; print_r($product); echo "</pre>";
+        (new CIBlockElement())->Update($product['ID'], ['ACTIVE' => 'N']);
+    }
        
         
  } ?>
